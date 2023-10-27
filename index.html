@@ -1,15 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ron's Domain</title>
+    <title>Email Account Generator</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #181818;
+            font-family: monospace;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .login {
+            background-color: rgb(0, 0, 0);
+            width: 100vh;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #00ff00;
+            border-radius: 10px;
+            box-shadow: 0 0 20px red;
+        }
+
+
+        .material-symbols-outlined {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            margin: 0 auto;
+            font-size: 50px;
+            color: red;
+            transition: 0.5s;
+
+        }
+
+        .material-symbols-outlined .hover-content {
+            display: none;
+        }
+
+        .material-symbols-outlined:hover .initial-content {
+            display: none;
+        }
+
+        .material-symbols-outlined:hover .hover-content {
+            display: inline;
+            color: #00ff00;
+        }
+
+        .login h1 {
+            text-align: center;
+        }
+
+        .login h1:hover {
+            color: #00ff00;
+        }
+
+        .login input {
+            color: #00ff00;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid red;
+            border-radius: 5px;
+        }
+
+        .login input[type="text"] {
+            background-color: black;
+        }
+
+        .login input.has-inoput {
+            border: 1px solid #00ff00;
+        }
+
+        .login button {
+            width: 100%;
+            padding: 10px;
+            background-color: #00ff00;
+            color: #fff;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login button:hover {
+            background-color: #ff0000;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>HELLO WORLD</h1>
+    <div class="login">
+        <div class="material-symbols-outlined">
+            <div class="initial-content">mail</div>
+            <div class="hover-content">mark_email_read</div>
+        </div>
 
+        <h1>Create Email Account</h1>
+        <p>The current domain used is @psu.palawan.edu.ph</p>
+
+        <form id="myForm">
+            <input type="text" pattern="[A-Za-z\s]+" id="fname" name="fname" placeholder="First name" maxlength="15">
+            <input type="text" pattern="[A-Za-z\s]+" id="lname" name="lname" placeholder="Last name" maxlength="15">
+
+            <button type="button" id="btn" onclick="createEmail()" style="display: none;">Generate Email</button>
+            <p id="email"></p>
+        </form>
+
+        <script>
+
+            function validateInput() {
+                var fname = document.getElementById('fname').value;
+                var lname = document.getElementById('lname').value;
+                var containsSymbols = /[^A-Za-z\s]/.test(fname) || /[^A-Za-z\s]/.test(lname);
+
+                if (fname.length <= 15 && lname.length <= 15 && !containsSymbols && fname && lname) {
+                    document.getElementById('btn').style.display = 'block';
+
+                } else {
+                    document.getElementById('btn').style.display = 'none';
+                }
+            }
+
+            document.getElementById('myForm').addEventListener('input', validateInput);
+
+            function createEmail() {
+                var fname = document.getElementById('fname').value;
+                var lname = document.getElementById('lname').value;
+                var email = fname + lname + '@psu.palawan.edu.ph';
+                document.getElementById('email').innerHTML = 'Created Email: ' + email;
+            }
+        </script>
+    </div>
 </body>
 
 </html>
