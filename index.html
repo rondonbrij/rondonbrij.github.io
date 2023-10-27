@@ -140,7 +140,7 @@
             function createEmail() {
                 var fname = document.getElementById('fname').value;
                 var lname = document.getElementById('lname').value;
-                var email = fname + lname + '@psu.palawan.edu.ph';
+                var email = (fname + lname + '@psu.palawan.edu.ph').toLowerCase();
                 document.getElementById('email').innerHTML = 'Created Email: ' + email;
             }
         </script>
